@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="column side">
+		<p><a href="{{ url_for('application.home') }}" style="text-decoration: none;">Needs Review Here</a></p>
+		<p><a href="{{ url_for('application.idlestatus') }}" style="text-decoration: none;">Pending/Completed</a></p>
+	</div>
+	<div>
+		<table class="datatable">
+			<thead>
+				<td><b>Entry Application Identifier</b></td>
+				<td><b>Date Application Received</b></td>
+				<td><b>Primary Applicant's Name</b></td>
+				<td><b>Status</b></td>
+				<td><b>Last Editor</b></td>
+			</thead>
+			<tbody>
+				{% for row in data %}
+					<tr>
+						<td><a href="{{ url_for('application.set_cookie', ENTRY_ID=row.ENTRY_ID) }}" style="text-decoration: none;">{{ row.ENTRY_ID }}</a></td>
+						<td>{{ row.ENTRY_DATE }}</td>
+						<td>{{ row.FULL_NAME }}</td>
+						<td>{{ row.APPSTATUS }}</td>
+						<td>{{ row.OWNER }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

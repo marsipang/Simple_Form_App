@@ -1,0 +1,27 @@
+{% import "macros.html" as macros %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Data Entry</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	</head>
+	<header>
+		<div class="wrapper">
+			<div class="container">
+				<h1 class="logo">Data Entry</h1>
+				<strong><nav>
+					<ul class="menu">
+					<li><a href="{{ url_for('application.home',) }}" style="text-decoration: none;">Home</a></li>
+					<li><a href="{{ url_for('application.ApplicationBase', input_type='new') }}" style="text-decoration: none;">New Application</a></li>
+					<li><a href="{{ url_for('tables.tables',) }}" style="text-decoration: none;">Tables</a></li>
+					<li><a href="{{ url_for('login.logout') }}">Logout</a></li>
+					</ul>
+				</nav></strong>
+			</div>
+		</div>
+	</header>
+	<body>
+		{% block content %}
+		{% endblock %}
+	</body>
+</html>

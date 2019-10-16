@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="centerpage">
+		<div align="center">
+			<h1>Products</h1>
+			<table class="datatable">
+				<thead>
+					<td><b>Product ID</b></td>
+					<td><b>Product</b></td>
+					<td><b>Date Registered</b></td>
+					<td><b>Registered By</b></td>
+				</thead>
+				<tbody>
+					{% for row in data %}
+						<tr>
+							<td>{{ row.PROD_ID }}</td>
+							<td>{{ row.PRODUCT }}</td>
+							<td>{{ row.INSERT_DTTM }}</td>
+							<td>{{ row.INSERT_USER }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

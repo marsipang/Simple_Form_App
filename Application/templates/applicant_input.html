@@ -1,0 +1,196 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="container" id="myTopnav">
+		{% call macros.render_form(form, error, class_='appinfo-form') %}
+		{% if input_type == "edit" %}
+			<span><a href="{{ url_for('application.Review') }}" style="text-decoration: none;">Back</a></span></td>
+		{% endif %}
+		<div id="pagehead">
+			<h1>{{ title }}</h1>
+			<b>Entry ID: <span id="entry_id">{{ entry_id }}</span></b>
+		</div>
+			<div id="applicant info">
+				<p>{{ macros.render_field(form.FirstName, cols="25", rows="1") }}
+				{{ macros.render_field(form.MiddleName, cols="25", rows="1") }}
+				{{ macros.render_field(form.LastName, cols="25", rows="1") }}
+				{{ macros.render_field(form.Suffix, cols="25", rows="1") }}</p>
+				<p>{{ macros.render_field(form.DOB) }}
+				{{ macros.render_field(form.Email, cols="50", rows="1") }}</p>
+				<p>{{ macros.render_field(form.StAddress1, cols="30", rows="1") }}
+				{{ macros.render_field(form.StAddress2, cols="30", rows="1") }}
+				{{ macros.render_field(form.StCity, cols="25", rows="1") }}
+				{{ macros.render_field(form.StState) }}
+				{{ macros.render_field(form.StZip, cols="25", rows="1") }}
+				{{ macros.render_field(form.StCountry) }}
+				{{ macros.render_field(form.AddrBoo) }}</p>
+				<div id="mail address">
+					<p>{{ macros.render_field(form.MailAddress1, cols="30", rows="1") }}
+					{{ macros.render_field(form.MailAddress2, cols="30", rows="1") }}
+					{{ macros.render_field(form.MailCity, cols="25", rows="1") }}
+					{{ macros.render_field(form.MailState) }}
+					{{ macros.render_field(form.MailZip, cols="25", rows="1") }}
+					{{ macros.render_field(form.MailCountry) }}</p>
+				</div>
+				<p>{{ macros.render_field(form.CellPhone, placeholder = "xxxxxxxxxx") }}
+				{{ macros.render_field(form.HomePhone, placeholder = "xxxxxxxxxx") }}
+				{{ macros.render_field(form.WorkPhone, placeholder = "xxxxxxxxxx") }}</p>
+				<p>{{ macros.render_field(form.EmploymentSt) }}
+				{{ macros.render_field(form.Employer) }}
+				{{ macros.render_field(form.Occupation) }}
+				{{ macros.render_field(form.Income) }}</p>
+				<p>{{ macros.render_field(form.NonTax) }}
+				<div id="non-tax">
+					{{ macros.render_field(form.NonTaxIncome) }}</p>
+				</div>
+				<p>{{ macros.render_field(form.ResidentialSt) }}
+				{{ macros.render_field(form.Rent) }}</p>
+			</div>
+			<p>{{ macros.render_button() }}</p>
+		{% endcall %}
+	</div>
+	
+	<script charset="utf-8" type="text/javascript">
+		var pageset = window.location.href.split('/')[3];
+		var pagetype = window.location.href.split('/')[4];
+		
+		var fnm = document.getElementById('FirstName');
+		var mnm = document.getElementById('MiddleName');
+		var lnm = document.getElementById('LastName');
+		var snm = document.getElementById('Suffix');
+		var dob = document.getElementById('DOB');
+		var eml = document.getElementById('Email');
+		var stadr1 = document.getElementById('StAddress1');
+		var stadr2 = document.getElementById('StAddress2');
+		var stct = document.getElementById('StCity');
+		var stst = document.getElementById('StState');
+		var stzp = document.getElementById('StZip');
+		var stcy = document.getElementById('StCountry');
+		var primailflg = document.getElementById('AddrBoo');
+		var mladr1 = document.getElementById('MailAddress1');
+		var mladr2 = document.getElementById('MailAddress2');
+		var mlct = document.getElementById('MailCity');
+		var mlst = document.getElementById('MailState');
+		var mlzp = document.getElementById('MailZip');
+		var mlcy = document.getElementById('MailCountry');
+		var cph = document.getElementById('CellPhone');
+		var hph = document.getElementById('HomePhone');
+		var wph = document.getElementById('WorkPhone');
+		var empst = document.getElementById('EmploymentSt');
+		var emp = document.getElementById('Employer');
+		var occ = document.getElementById('Occupation');
+		var inc = document.getElementById('Income');		
+		var prinontax = document.getElementById('NonTax');
+		var prinontaxinc = document.getElementById('NonTaxIncome');
+		var res = document.getElementById('ResidentialSt');
+		var rent = document.getElementById('Rent');
+		
+		var priaddr = document.getElementById('mail address');
+		var pritax = document.getElementById('non-tax');
+		
+		function pri_mailtoggle() {
+			if (primailflg.checked == true){
+				priaddr.style.display = 'inline-block';
+			} else {
+				priaddr.style.display = 'none';
+			}
+		}
+		
+		function primary_tax() {
+			if (prinontax.value == "Y"){
+				pritax.style.display = 'inline-block';
+				prinontaxinc.value = 0;
+			} else {
+				pritax.style.display = 'none';
+				prinontaxinc.value = 0;
+			}
+		}
+		
+		function prefill() {
+			var eid = document.getElementById('entry_id').innerHTML;
+			fetch('/prefill/' + eid).then(function(response) {
+				response.json().then(function(data) {
+					if (pagetype == "applicant"){
+						fnm.value = data.NAME_FIRST_PRI;
+						mnm.value = data.NAME_MIDDLE_PRI;
+						lnm.value = data.NAME_LAST_PRI;
+						snm.value = data.NAME_SUFFIX_PRI;
+						dob.value = data.DOB_PRI;
+						eml.value = data.EMAIL_PRI;
+						stadr1.value = data.STREET_ADDRESS1_PRI;
+						stadr2.value = data.STREET_ADDRESS2_PRI;
+						stct.value = data.STREET_CITY_PRI;
+						stst.value = data.STREET_STATE_PRI;
+						stzp.value = data.STREET_ZIP_PRI;
+						stcy.value = data.STREET_COUNTRY_PRI;
+						primailflg.checked = data.MLFLG_PRI
+						mladr1.value = data.MAIL_ADDRESS1_PRI;
+						mladr2.value = data.MAIL_ADDRESS2_PRI;
+						mlct.value = data.MAIL_CITY_PRI;
+						mlst.value = data.MAIL_STATE_PRI;
+						mlzp.value = data.MAIL_ZIP_PRI;
+						mlcy.value = data.MAIL_COUNTRY_PRI;
+						cph.value = data.MOBILE_PHONE_PRI;
+						hph.value = data.HOME_PHONE_PRI;
+						wph.value = data.WORK_PHONE_PRI;
+						empst.value = data.EMPLOYMENT_STATUS_PRI;
+						emp.value = data.EMPLOYER_PRI;
+						occ.value = data.OCCUPATION_PRI;
+						inc.value = data.INCOME_PRI;
+						prinontax.value = data.TAX_FLG_PRI;
+						prinontaxinc.value = data.NON_TAX_INCOME_PRI;
+						res.value = data.RESIDENTIAL_STATUS_PRI;
+						rent.value = data.RENT_PRI;
+					} else if (pagetype == "coapp") {
+						fnm.value = data.NAME_FIRST_SEC;
+						mnm.value = data.NAME_MIDDLE_SEC;
+						lnm.value = data.NAME_LAST_SEC;
+						snm.value = data.NAME_SUFFIX_SEC;
+						dob.value = data.DOB_SEC;
+						eml.value = data.EMAIL_SEC;
+						stadr1.value = data.STREET_ADDRESS1_SEC;
+						stadr2.value = data.STREET_ADDRESS2_SEC;
+						stct.value = data.STREET_CITY_SEC;
+						stst.value = data.STREET_STATE_SEC;
+						stzp.value = data.STREET_ZIP_SEC;
+						stcy.value = data.STREET_COUNTRY_SEC;
+						primailflg.checked = data.MLFLG_SEC
+						mladr1.value = data.MAIL_ADDRESS1_SEC;
+						mladr2.value = data.MAIL_ADDRESS2_SEC;
+						mlct.value = data.MAIL_CITY_SEC;
+						mlst.value = data.MAIL_STATE_SEC;
+						mlzp.value = data.MAIL_ZIP_SEC;
+						mlcy.value = data.MAIL_COUNTRY_SEC;
+						cph.value = data.MOBILE_PHONE_SEC;
+						hph.value = data.HOME_PHONE_SEC;
+						wph.value = data.WORK_PHONE_SEC;
+						empst.value = data.EMPLOYMENT_STATUS_SEC;
+						emp.value = data.EMPLOYER_SEC;
+						occ.value = data.OCCUPATION_SEC;
+						inc.value = data.INCOME_SEC;
+						prinontax.value = data.TAX_FLG_SEC;
+						prinontaxinc.value = data.NON_TAX_INCOME_SEC;
+						res.value = data.RESIDENTIAL_STATUS_SEC;
+						rent.value = data.RENT_SEC;
+					}
+				})
+			});
+		}
+		
+		function load() {
+			pri_mailtoggle();
+			primary_tax();
+			if (pageset == "edit"){
+				prefill();
+			}
+		}
+		
+		onload = load();
+		primailflg.onclick = function() {
+			pri_mailtoggle();
+		}
+		prinontax.onchange = function() {
+			primary_tax();
+		}
+	</script>
+		
+{% endblock %}

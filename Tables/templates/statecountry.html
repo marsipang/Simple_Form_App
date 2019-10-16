@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="centerpage">
+		<div align="center">
+			<h1>States and Countries</h1>
+			<table class="datatable" >
+				<thead>
+					<td><b>State</b></td>
+					<td><b>Country</b></td>
+					<td><b>State Code</b></td>
+					<td><b>2 Digit ISO Code</b></td>
+					<td><b>3 Digit ISO Code</b></td>
+					<td><b>Risk Flag</b></td>
+				</thead>
+				<tbody>
+					{% for row in data %}
+						<tr>
+							<td>{{ row.STATE }}</td>
+							<td>{{ row.COUNTRY }}</td>
+							<td>{{ row.STATE_CODE }}</td>
+							<td>{{ row.COUNTRY_CODE_2 }}</td>
+							<td>{{ row.COUNTRY_CODE_3 }}</td>
+							<td>{{ row.RISK }}</td>
+							
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

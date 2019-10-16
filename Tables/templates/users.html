@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+	{% if permissions == 'Admin' %}
+		<div class="column side">
+			<div class="leftopt">
+				<form class="form" id="AddUserForm" role="form" method="post" action="">
+					{{ form.csrf_token }}
+					<p>{{ macros.render_field(form.firstname) }}</p>
+					<p>{{ macros.render_field(form.lastname) }}</p>
+					<p>{{ macros.render_field(form.email) }}</p>
+					<p>{{ macros.render_button(name='Submit', value='Submit') }}</p>
+					{% if error %}
+						<p class="error"><strong>Sorry!</strong> {{ error }}</p>
+					{% endif %}
+				</form>
+			</div>
+		</div>
+		<div class="column middle">
+	{% else %}
+		<div class="centerpage">
+	{% endif %}
+		<div align="center">
+			<table class="datatable" >
+				<thead>
+					<td><b>User</b></td>
+					<td><b>Email</b></td>
+					<td><b>User Rights</b></td>
+					<td><b>Date Registered</b></td>
+				</thead>
+				<tbody>
+					{% for row in data %}
+						<tr>
+							<td>{{ row.FULL_NAME }}</td>
+							<td>{{ row.EMAIL }}</td>
+							<td>{{ row.RIGHTS }}</td>
+							<td>{{ row.INSERT_DTTM }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div align = center>
+		
+			<style type="text/css">
+				table tbody td:hover { background-color: #ffff99;}
+				display: flex;
+				flex-flow: row wrap;
+				-webkit-flex-flow: row wrap;
+				justify-content: space-around;
+			</style>
+			<table id = "Application For" style = "font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 1em; border: 2px solid black; border-collapse: collapse;">
+				<tbody>
+					<td colspan = "6" style = "border: .1px solid black; border-collapse: collapse; background-color: orange"><span style="float: left;"><b>Application For</b></span>
+						{% if status == "Needs Review" or status == "Upload Error - Needs Review"%}
+							<span style="float: right;"><a href="{{ url_for('application.ApplicationBase', input_type='edit') }}" style="text-decoration: none;">Edit</a></span></td>
+						{% endif %}
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Entry Application Identifier:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.ENTRY_ID }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Date Application Received:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.ENTRY_DATE }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Product:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.PRODUCT }}</td>
+					</tr>
+				</tbody>
+			<table>
+			<p></p>
+			<table id = "Applicant Information" style = "font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 1em; border: 2px solid black; border-collapse: collapse;">
+				<tbody>
+					<tr>
+						<td colspan = "6" style = "border: .1px solid black; border-collapse: collapse; background-color: orange"><span style="float: left;"><b>Applicant Information</b></span> 
+							{% if status == "Needs Review" or status == "Upload Error - Needs Review"%}
+								<span style="float: right;"><a href="{{ url_for('application.Applicant', input_type='edit') }}" style="text-decoration: none;">Edit</a></span></td>
+							{% endif %}
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Full Name:</b></td>
+						<td colspan = "3" style = "border: .1px solid black; border-collapse: collapse;">{{ data.NAME_FIRST_PRI }} {{ data.NAME_MIDDLE_PRI }} {{ data.NAME_LAST_PRI }} {{ data.NAME_SUFFIX_PRI }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Date of Birth:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.DOB_PRI }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Email Address:</b></td>
+						<td colspan = "3" style = "border: .1px solid black; border-collapse: collapse;">{{ data.EMAIL_PRI }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Cell/Mobile Phone Number:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.MOBILE_PHONE_PRI }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Street Address:</b></td>
+						<td colspan = "3" style = "border: .1px solid black; border-collapse: collapse;">{{ data.STREET_ADDRESS1_PRI }} {{data.STREET_ADDRESS2_PRI }} {{ data.STREET_CITY_PRI }} {{ data.STREET_STATE_PRI }} {{ data.STREET_ZIP_PRI }} {{ data.STREET_COUNTRY_PRI }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Home Phone Number:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.HOME_PHONE_PRI }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Mailing Address:</b></td>
+						<td colspan = "3" style = "border: .1px solid black; border-collapse: collapse;">{{ data.MAIL_ADDRESS1_PRI }} {{ data.MAIL_ADDRESS2_PRI }} {{ data.MAIL_CITY_PRI }} {{ data.MAIL_STATE_PRI }} {{ data.MAIL_ZIP_PRI }} {{ data.MAIL_COUNTRY_PRI }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Work Phone Number:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.WORK_PHONE_PRI }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Employment Status:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.EMPLOYMENT_STATUS_PRI }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Name of Employer/Business:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.EMPLOYER_PRI }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Occupation/Position:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.OCCUPATION_PRI }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Total Annual Income:</b></td>
+						<td colspan = "2" style = "border: .1px solid black; border-collapse: collapse;">{{ data.INCOME_PRI }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>How much of annual income is non-taxable?:</b></td>
+						<td colspan = "2" style = "border: .1px solid black; border-collapse: collapse;">{{ data.NON_TAX_INCOME_PRI }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Residential Status:</b></td>
+						<td colspan = "2" style = "border: .1px solid black; border-collapse: collapse;">{{ data.RESIDENTIAL_STATUS_PRI }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Monthly Rent/Mortgage Payment:</b></td>
+						<td colspan = "2" style = "border: .1px solid black; border-collapse: collapse;">{{ data.RENT_PRI }}</td>
+					</tr>
+					<tr>
+						<td colspan = "6" style = "border: .1px solid black; border-collapse: collapse; background-color: orange"><b>Co-Applicant Information</b></span> 
+							{% if status == "Needs Review" or status == "Upload Error - Needs Review"%}
+								<span style="float: right;"><a href="{{ url_for('application.Coapp', input_type='edit') }}" style="text-decoration: none;">Edit</a></span></td>
+							{% endif %}
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Full Name:</b></td>
+						<td colspan = "3" style = "border: .1px solid black; border-collapse: collapse;">{{ data.NAME_FIRST_SEC }} {{ data.NAME_MIDDLE_SEC }} {{ data.NAME_LAST_SEC }} {{ data.NAME_SUFFIX_SEC }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Date of Birth:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.DOB_SEC }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Email Address:</b></td>
+						<td colspan = "3" style = "border: .1px solid black; border-collapse: collapse;">{{ data.EMAIL_SEC }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Cell/Mobile Phone Number:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.MOBILE_PHONE_SEC }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Street Address:</b></td>
+						<td colspan = "3" style = "border: .1px solid black; border-collapse: collapse;">{{ data.STREET_ADDRESS1_SEC }} {{ data.STREET_ADDRESS2_SEC }} {{ data.STREET_CITY_SEC }} {{ data.STREET_STATE_SEC }} {{ data.STREET_ZIP_SEC }} {{ data.STREET_COUNTRY_SEC }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Home Phone Number:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.HOME_PHONE_SEC }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Mailing Address:</b></td>
+						<td colspan = "3" style = "border: .1px solid black; border-collapse: collapse;">{{ data.MAIL_ADDRESS1_SEC }} {{ data.MAIL_ADDRESS2_SEC }} {{ data.MAIL_CITY_SEC }} {{ data.MAIL_STATE_SEC }} {{ data.MAIL_ZIP_SEC }} {{ data.MAIL_COUNTRY_SEC }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Work Phone Number:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.WORK_PHONE_SEC }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Employment Status:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.EMPLOYMENT_STATUS_SEC }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Name of Employer/Business:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.EMPLOYER_SEC }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Occupation/Position:</b></td>
+						<td style = "border: .1px solid black; border-collapse: collapse;">{{ data.OCCUPATION_SEC }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Total Annual Income:</b></td>
+						<td colspan = "2" style = "border: .1px solid black; border-collapse: collapse;">{{ data.INCOME_SEC }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>How much of annual income is non-taxable?:</b></td>
+						<td colspan = "2" style = "border: .1px solid black; border-collapse: collapse;">{{ data.NON_TAX_INCOME_SEC }}</td>
+					</tr>
+					<tr>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Residential Status:</b></td>
+						<td colspan = "2" style = "border: .1px solid black; border-collapse: collapse;">{{ data.RESIDENTIAL_STATUS_SEC }}</td>
+						<td style = "border: .1px solid black; border-collapse: collapse;"><b>Monthly Rent/Mortgage Payment:</b></td>
+						<td colspan = "2" style = "border: .1px solid black; border-collapse: collapse;">{{ data.RENT_SEC }}</td>
+					</tr>
+				</tbody>
+			<table>
+			{% if status == "Needs Review" or status == "Upload Error - Needs Review"%}
+				<form class="form" id="EditForm" role="form" method="post" action="">
+					{{ form.csrf_token }}
+					<p>{{ macros.render_field(form.Reviewed) }}</p>
+					<p>{{ macros.render_button(name='Application Reviewed', value='Application Reviewed') }}</p>
+					{% if error %}
+						<p class="error"><strong>Sorry!</strong> {{ error }}</p>
+					{% endif %}
+				</form>
+			{% else %}
+				<p><b>Reviewed. Cannot Edit</b></p>
+			{% endif %}
+	</div>
+{% endblock %}

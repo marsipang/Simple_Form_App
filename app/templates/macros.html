@@ -1,0 +1,40 @@
+{% macro render_field(field, label_visible=true, label_above=false) -%}
+	<div class="formfield" id="div {{ field.id }}">
+		<span class="form-group {% if field.errors %}has-error{% endif %} {{ kwargs.pop('class_', '') }}">
+			{% if (field.type != 'HiddenField' and field.type !='CSRFTokenField') and label_visible %}
+				<label for="{{ field.id }}" class="control-label">{{ field.label }}</label>
+			{% endif %}
+			{{ field(class_='form-control', **kwargs) }}
+			{% if field.errors %}
+				{% for error in field.errors %}
+				  <p class="error"><font color="red"><strong>Sorry!</strong> {{ error }}</font></p>
+				{% endfor %}
+			{% endif %}
+		</span>
+	</div>
+{%- endmacro %}
+
+{% macro render_button(name='Submit', value='Submit') -%}
+	<input type=submit name="{{ name }}" value="{{ value }}">
+{%- endmacro %}
+	
+{% macro render_form(form, error, class_='', action_url='') -%}
+    <form method="POST" action="{{ action_url }}" role="form" class="{{ class_ }}">
+        {{ form.csrf_token }}
+		{{ form.hidden_tag() if form.hidden_tag }}
+        {% if caller %}
+            {{ caller() }}
+        {% else %}
+            {% for f in form %}
+                {% if f.type == 'button' %}
+                    {{ render_button(f) }}
+                {% else %}
+                    {{ render_field(f) }}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+		{% if error %}
+			<p class="error"><font color="red"><strong>Sorry!</strong> {{ error }}</font></p>
+		{% endif %}
+    </form>
+{%- endmacro %}

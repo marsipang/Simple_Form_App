@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="container" id="myTopnav">
+		{% call macros.render_form(form, error, class_='appinfo-form') %}
+		{% if input_type == "edit" %}
+			<span><a href="{{ url_for('application.Review') }}" style="text-decoration: none;">Back</a></span></td>
+		{% endif %}
+		<div id="pagehead">
+			<h1>Application For</h1>
+			{% if input_type == "edit" %}
+				<b>Entry ID: <span id="entry_id">{{ entry_id }}</span></b>
+			{% endif %}
+		</div>
+			<p>{{ macros.render_field(form.dtreceived) }}</p>
+			<p>{{ macros.render_field(form.Product) }}
+			<p>{{ macros.render_button() }}</p>
+		{% endcall %}
+	</div>
+	
+	<script charset="utf-8" type="text/javascript">
+		var pageset = window.location.href.split('/')[3];
+	
+		var dtrc = document.getElementById('dtreceived');
+		var product = document.getElementById('Product');		
+				
+		function prefill() {
+			var eid = document.getElementById('entry_id').innerHTML;
+			fetch('/prefill/' + eid).then(function(response) {
+				response.json().then(function(data) {
+					dtrc.value = data.ENTRY_DATE
+					product.value = data.PROD_ID;
+				})
+			});
+		}
+		
+		function load() {
+			if (pageset == "edit"){
+				prefill();
+			}
+		}
+
+		onload = load();
+	</script>
+		
+{% endblock %}

@@ -1,0 +1,26 @@
+{% import "macros.html" as macros %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Data Entry</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	</head>
+	<header>
+		<div class="container">
+			<h1 class="logo">Data Entry</h1>
+			<strong><nav>
+				<ul class="menu">
+					<li><a href="{{ url_for('login.welcome') }}">Login</a></li>
+				</ul>
+			</nav></strong>
+		</div>
+	</header>
+	<body>
+		<div class="centerpure">
+			<div class="textcenter">
+				{% block content %}
+				{% endblock %}
+			</div>
+		</div>
+	</body>
+</html>

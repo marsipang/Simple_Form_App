@@ -1,0 +1,17 @@
+{% extends "layout_welcome.html" %}
+{% block content %}
+	<p>Welcome to the Data Entry Website!</p>
+	<p>Please login below. Thank you!</p>
+	<p>
+	{% call macros.render_form(form, error, class_='signin-form') %}
+		<p>{{ macros.render_field(form.username) }}</p>
+		<p>{{ macros.render_field(form.password) }}</p>
+		<p>{{ macros.render_button(name='Sign in', value='Sign in') }}</p>
+		<p>{{ macros.render_button(name='Forgot Password', value='Forgot Password') }}</p>
+	{% endcall %}
+	</p>
+	<br></br>
+	<p><b>Please be sure to use Google Chrome when using this website. Not all features work on other browsers.</b></p>
+	
+	
+{% endblock %}

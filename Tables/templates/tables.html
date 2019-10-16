@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div align = center>
+		<h1>Tables</h1>
+		<p><a href="{{ url_for('tables.users',) }}" style="text-decoration: none;">Users</a></p>
+		<p><a href="{{ url_for('tables.products',) }}" style="text-decoration: none;">Products</a></p>
+		<p><a href="{{ url_for('tables.statecountry',) }}" style="text-decoration: none;">States and Countries</a></p>
+	</div>
+{% endblock %}

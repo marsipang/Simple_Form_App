@@ -1,0 +1,217 @@
+body {
+	padding: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #444;
+	margin-top: 60px;
+}
+/*
+ * Formatting the header area
+ */
+header {
+  background-color: #8B0000;
+  height: 35px;
+  width: 100%;
+  opacity: .9;
+  margin-bottom: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+header h1.logo {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 10px;
+  margin-right: 0;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  float: left;
+}
+header h1.logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+/* Grided pages */
+.grid-container {
+	display: grid;
+}
+.grid-item {
+	text-align: center;
+}
+
+
+/*
+ * Centering the body content
+ */
+.container {
+  width: 100%;
+  margin: 0 auto;
+}
+.wrapper {
+	width: 100%;
+	overflow: hidden;
+}
+/*Centering page when inside division is too big*/
+.centerpage {
+	margin: auto;
+	width: 50%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+.centerpure {
+    margin: auto;
+    width: 50%;
+    padding: 125px;
+}
+
+.textcenter {
+	text-align: center;
+}
+div.boxorange {
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 0 30px 0;
+  background-color: orange;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+div.wrapperorange {
+  display: inline-block;
+  padding: 8px 5px 8px 5px;
+  background-color: orange;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+div.boxgold {
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 0 30px 0;
+  background-color: Gold;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+div.home {
+  width: 1400px;
+  margin: 0 auto;
+  padding: 10px 0 30px 0;
+  background-color: #E6E6FA;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+div.about {
+  padding: 10px 0 30px 0;
+  background-color: #E6E6FA;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+h2 {
+  font-size: 3em;
+  margin-top: 40px;
+  text-align: center;
+  letter-spacing: -2px;
+}
+h3 {
+  font-size: 1.7em;
+  font-weight: 100;
+  margin-top: 30px;
+  text-align: center;
+  letter-spacing: -1px;
+  color: #999;
+}
+.menu {
+  float: right;
+  margin-top: 8px;
+  margin-right: 10px;
+}
+.menu li {
+  display: inline;
+}
+.menu li + li {
+  margin-left: 35px;
+}
+.menu li a {
+  color: white;
+  text-decoration: none;
+}
+div.leftopt {
+	margin: 15px;
+    float: left;
+	display: inline-block;
+	padding: 8px 5px 8px 5px;
+	background-color: #8B0000;
+	color: white;
+	-webkit-border-radius: 6px;
+		-moz-border-radius: 6px;
+			border-radius: 6px;
+}
+.column {
+	float:left;
+}
+.column.side {
+	width:18%;
+}
+.column.middle {
+	width:64%;
+	-webkit-flex: 1;
+}
+
+div.formfield {
+    display: inline-block;
+}
+
+div.formfield label {
+    display: block;
+}
+
+table.datatable {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+	font-size: 0.8em; 
+	border: 2px solid orange;
+}
+
+table.datatable tr:nth-child(even){
+  background-color: orange;
+}
+
+table.datatable tr:hover {
+  background-color: #ffff99;
+}
+
+table.datatable td {
+	padding: 5px;
+}
+
+table.datatable thead {
+	background-color: orange;
+}
+
+.grid-container {
+  padding-right: 0.625rem;
+  padding-left: 0.625rem;
+  max-width: 67.5rem;
+  margin: 0 auto; }
+  @media print, screen and (min-width: 40em) {
+    .grid-container {
+      padding-right: 0.9375rem;
+      padding-left: 0.9375rem; } }
+  .grid-container.fluid {
+    padding-right: 0.625rem;
+    padding-left: 0.625rem;
+    max-width: 100%;
+    margin: 0 auto; }
+    @media print, screen and (min-width: 40em) {
+      .grid-container.fluid {
+        padding-right: 0.9375rem;
+        padding-left: 0.9375rem; } }
+  .grid-container.full {
+    padding-right: 0;
+    padding-left: 0;
+    max-width: 100%;
+    margin: 0 auto; }

@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="container" id="myTopnav">
+		<form method ="post" action="" align = center>
+			<div id="pagehead">
+				<h1>Is this a Joint Application?</h1>
+				<b>Entry ID: {{ entry_id }}</b>
+			</div>
+			<p>{{ macros.render_button(name='Yes', value='Yes') }}
+			{{ macros.render_button(name='No', value='No') }}</p>
+		</form>
+	</div>	
+{% endblock %}
