@@ -9,7 +9,7 @@ cur = conn.cursor()
 cur.execute('''CREATE TABLE USERS("NAME_FIRST" TEXT NOT NULL, "NAME_LAST" TEXT NOT NULL, "EMAIL" TEXT NOT NULL, "PASSWORD" NOT NULL, "RIGHTS" TEXT NOT NULL, "TOKEN" TEXT, "CONFIRMED" TEXT NOT NULL, "INSERT_DTTM" DATETIME NOT NULL)''')
 conn.commit()
 
-cur.execute(f'''INSERT INTO USERS(NAME_FIRST, NAME_LAST, EMAIL, PASSWORD, RIGHTS, TOKEN, CONFIRMED, INSERT_DTTM) VALUES("Admin", "Example", "testacct", "{generate_password_hash("test")}", "Admin", "{generate_password_hash("test")}", "TRUE", datetime("now", "localtime"))''')
+cur.execute(f'''INSERT INTO USERS(NAME_FIRST, NAME_LAST, EMAIL, PASSWORD, RIGHTS, TOKEN, CONFIRMED, INSERT_DTTM) VALUES("Admin", "Example", "testacct@test.com", "{generate_password_hash("test")}", "Admin", "{generate_password_hash("test")}", "TRUE", datetime("now", "localtime"))''')
 conn.commit()
 
 #DATA_ENTRY
