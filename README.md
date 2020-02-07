@@ -1,3 +1,3 @@
 # CCD_Data_Entry
 
-Creating a web gui for the credit card data entry to prepare for the new united card
+Creating a web gui for data entry to make filling out forms easier to understand
