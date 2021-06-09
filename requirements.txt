@@ -9,7 +9,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.1
 Mako==1.0.8
 MarkupSafe==1.1.1
-pip==19.0.3
+pip==19.2
 pypiwin32==223
 python-dateutil==2.8.0
 python-dotenv==0.10.1
